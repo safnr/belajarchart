@@ -3,7 +3,7 @@ include ('koneksi_covid.php');
 $covid = mysqli_query($conn, "SELECT * FROM tb_covid");
 while ($row = mysqli_fetch_array($covid)) {
     $nama_negara[] = $row['country'];
-    $query = mysqli_query ($conn, "SELECT sum(total_cases) as total_cases FROM tb_covid");
+    $query = mysqli_query ($conn, "SELECT sum(total_cases) as total_cases FROM tb_covid WHERE no = '".$row['no']."'");
     $row = $query->fetch_array();
     $total_kasus[] = $row['total_cases'];
 };
