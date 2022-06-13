@@ -8,7 +8,7 @@ for ($bulan = 1; $bulan < 13; $bulan++)
     $query = mysqli_query ($conn, "SELECT sum(jumlah) as jumlah FROM tb_penjualan WHERE MONTH(tanggal_penjualan) = '$bulan'");
     $row = $query->fetch_array();
     $jumlah_produk[] = $row['jumlah'];
-}
+};
 ?>
 <!DOCTYPE html>
 <html>

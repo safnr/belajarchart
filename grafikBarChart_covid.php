@@ -1,19 +1,17 @@
 <?php
 include ('koneksi_covid.php');
-$label =
-["India", "S.Korea", "Turkey", "Vietnam", "Japan", "Iran", "Indonesia", "Malaysia", "Thailand", "Israel"];
-
-for ($country = 1; $country < 11; $country++)
-{
+$covid = mysqli_query($conn, "SELECT * FROM tb_covid");
+while ($row = mysqli_fetch_array($covid)) {
+    $nama_negara[] = $row['country'];
     $query = mysqli_query ($conn, "SELECT sum(total_cases) as total_cases FROM tb_covid");
     $row = $query->fetch_array();
-    $total_cases[] = $row['total_cases'];
-}
+    $total_kasus[] = $row['total_cases'];
+};
 ?>
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Membuat Grafik Menggunakan Chart JS</title>
+    <title>Grafik Covid</title>
     <script type="text/javascript" src="Chart.js"></script>
 </head>
 <body>
@@ -25,11 +23,12 @@ for ($country = 1; $country < 11; $country++)
         var myChart = new Chart (ctx, {
             type: 'bar',
             data: {
-                labels: <?php echo json_encode ($label); ?>,
+                labels: <?php echo json_encode ($nama_negara); ?>,
                 datasets: [{
                     label: 'Grafik Covid',
-                    data: <?php echo json_encode($total_cases);
-                    ?>,
+                    data: <?php echo json_encode($total_kasus); ?>,
+                    backgroundColor: 'rgba(225,99,132,0.2)',
+                    borderColor: 'rgba(225,99,132,1)',
                     borderWidth: 1                    
                 }]
             },
