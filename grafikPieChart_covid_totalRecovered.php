@@ -11,7 +11,7 @@ while ($row = mysqli_fetch_array($covid)) {
 <!DOCTYPE html>
 <html>
 <head>
-    <title>[Pie Chart] Graphic Total Deaths Covid</title>
+    <title>[Pie Chart] Graphic Total Recovered Covid</title>
     <script type="text/javascript" src="chart.js"></script>
 </head>
 <body>
