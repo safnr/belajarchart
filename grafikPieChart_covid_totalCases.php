@@ -11,7 +11,7 @@ while ($row = mysqli_fetch_array($covid)) {
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Pie Chart Covid</title>
+    <title>[Pie Chart] Grafik Total Cases Covid</title>
     <script type="text/javascript" src="chart.js"></script>
 </head>
 <body>
@@ -26,27 +26,27 @@ while ($row = mysqli_fetch_array($covid)) {
                     data: <?php echo json_encode($total_kasus); ?>,
                     backgroundColor: [
                         'rgba(225,99,132,0.2)',
+                        'rgb(255,64,0,0.2)',
+                        'rgba(252,186,3,0.2)',
+                        'rgba(255,255,86,0.2)',                
+                        'rgba(191,255,0,0.2)',
+                        'rgba(0,255,191,0.2)',
                         'rgba(54,162,235,0.2)',
-                        'rgba(255,206,86,0.2)',
                         'rgba(75,192,192,0.2)',
-                        'rgba(255, 229, 221,0.2)',
-                        'rgba(222, 231, 236,0.2)',
                         'rgba(185,192,192,0.2)',
-                        'rgba(235, 235, 223,0.2)',
-                        'rgba(255, 231, 221,0.2)',
-                        'rgba(255, 209, 177,0.2)'
+                        'rgba(235,0,128,0.2)'
                     ],
                     borderColor:[
                         'rgba(225,99,132,1)',
+                        'rgb(255,64,0,1)',
+                        'rgba(252,186,3,1)',
+                        'rgba(255,255,86,1)',                
+                        'rgba(191,255,0,1)',
+                        'rgba(0,255,191,1)',
                         'rgba(54,162,235,1)',
-                        'rgba(255,206,86,1)',
                         'rgba(75,192,192,1)',
-                        'rgba(255, 229, 221,1)',
-                        'rgba(222, 231, 236,1)',
                         'rgba(185,192,192,1)',
-                        'rgba(235, 235, 223,1)',
-                        'rgba(255, 231, 221,1)',
-                        'rgba(255, 209, 177,1)'
+                        'rgba(235,0,128,1)'
                     ],
                     label: 'Presentase Penjualan Barang'
                 }],

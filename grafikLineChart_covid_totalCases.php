@@ -11,7 +11,7 @@ while ($row = mysqli_fetch_array($covid)) {
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Grafik Covid</title>
+    <title>[Line Chart] Grafik Total Cases Covid</title>
     <script type="text/javascript" src="Chart.js"></script>
 </head>
 <body>
@@ -21,7 +21,7 @@ while ($row = mysqli_fetch_array($covid)) {
     <script>
         var ctx = document.getElementById("myChart").getContext('2d');
         var myChart = new Chart (ctx, {
-            type: 'bar',
+            type: 'line',
             data: {
                 labels: <?php echo json_encode ($nama_negara); ?>,
                 datasets: [{
