@@ -3,36 +3,45 @@ include ('koneksi_covid.php');
 $covid = mysqli_query($conn, "SELECT * FROM tb_covid");
 while ($row = mysqli_fetch_array($covid)) {
     $nama_negara[] = $row['country'];
-    $query = mysqli_query ($conn, "SELECT sum(total_cases) as total_cases FROM tb_covid");
+    $query = mysqli_query ($conn, "SELECT sum(total_cases) as total_cases FROM tb_covid WHERE no = '".$row['no']."'");
     $row = $query->fetch_array();
     $total_kasus[] = $row['total_cases'];
-}; 
+};
 ?>
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
 <head>
-<script>
-window.onload = function () {
- 
-var chart = new CanvasJS.Chart("chartContainer", {
-	title: {
-		text: "Push-ups Over a Week"
-	},
-	axisY: {
-		title: "Number of Push-ups"
-	},
-	data: [{
-		type: "line",
-		dataPoints: <?php echo json_encode($nama_negara, JSON_NUMERIC_CHECK); ?>
-	}]
-});
-chart.render();
- 
-}
-</script>
+    <title>Grafik Covid</title>
+    <script type="text/javascript" src="Chart.js"></script>
 </head>
 <body>
-<div id="chartContainer" style="height: 370px; width: 100%;"></div>
-<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <div style="width: 800px; height: 800px">
+        <canvas id="myChart"></canvas>
+    </div>    
+    <script>
+        var ctx = document.getElementById("myChart").getContext('2d');
+        var myChart = new Chart (ctx, {
+            type: 'line',
+            data: {
+                labels: <?php echo json_encode ($nama_negara); ?>,
+                datasets: [{
+                    label: 'Grafik Covid',
+                    data: <?php echo json_encode($total_kasus); ?>,
+                    backgroundColor: 'rgba(225,99,132,0.2)',
+                    borderColor: 'rgba(225,99,132,1)',
+                    borderWidth: 1                    
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+    </script>  
 </body>
-</html>     
+</html>
