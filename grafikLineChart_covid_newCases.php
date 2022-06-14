@@ -3,15 +3,15 @@ include ('koneksi_covid.php');
 $covid = mysqli_query($conn, "SELECT * FROM tb_covid");
 while ($row = mysqli_fetch_array($covid)) {
     $nama_negara[] = $row['country'];
-    $query = mysqli_query ($conn, "SELECT sum(total_cases) as total_cases FROM tb_covid WHERE no = '".$row['no']."'");
+    $query = mysqli_query ($conn, "SELECT sum(new_cases) as new_cases FROM tb_covid WHERE no = '".$row['no']."'");
     $row = $query->fetch_array();
-    $total_kasus[] = $row['total_cases'];
+    $kasus_baru[] = $row['new_cases'];
 };
 ?>
 <!DOCTYPE html>
 <html>
 <head>
-    <title>[Bar Chart] Graphic Total Cases Covid</title>
+    <title>[Line Chart] Graphic New Cases Covid</title>
     <script type="text/javascript" src="Chart.js"></script>
 </head>
 <body>
@@ -21,7 +21,7 @@ while ($row = mysqli_fetch_array($covid)) {
     <script>
         var ctx = document.getElementById("myChart").getContext('2d');
         var myChart = new Chart (ctx, {
-            type: 'bar',
+            type: 'line',
             data: {
                 labels: <?php echo json_encode ($nama_negara); ?>,
                 datasets: [{
