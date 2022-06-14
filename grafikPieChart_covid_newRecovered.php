@@ -11,7 +11,7 @@ while ($row = mysqli_fetch_array($covid)) {
 <!DOCTYPE html>
 <html>
 <head>
-    <title>[Pie Chart] Graphic New Cases Covid</title>
+    <title>[Pie Chart] Graphic New Recovered Covid</title>
     <script type="text/javascript" src="chart.js"></script>
 </head>
 <body>
@@ -23,7 +23,7 @@ while ($row = mysqli_fetch_array($covid)) {
             type: 'pie',
             data: {
                 datasets: [{
-                    data: <?php echo json_encode($kematian_baru); ?>,
+                    data: <?php echo json_encode($sembuh_baru); ?>,
                     backgroundColor: [
                         'rgba(225,99,132,0.2)',
                         'rgb(255,64,0,0.2)',
